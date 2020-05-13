@@ -1,0 +1,6 @@
+alias ls='ls -G'
+alias zt="zathura"
+alias fucking='doas'
+alias nb='newsboat'
+alias print="/usr/local/bin/lp"
+alias mas="cd ~/Dokumente/masters_thesis"

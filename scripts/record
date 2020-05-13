@@ -1,0 +1,1 @@
+ffmpeg -f oss -i /dev/dsp4.0 -vn "$1"

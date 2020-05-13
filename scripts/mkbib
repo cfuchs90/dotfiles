@@ -1,0 +1,36 @@
+#!/bin/sh
+
+PAPERDIR="$HOME/Dokumente/Papers/"
+
+doi2bib() 
+{
+	DOI=$1
+	response=`curl -s https://api.crossref.org/works/$DOI/transform/application/x-bibtex`
+
+	echo >> ~/Dokumente/library_dirty.bib
+	echo $response >> ~/Dokumente/library_dirty.bib
+	echo "Added $DOI to library"
+	echo >> ~/Dokumente/library_dirty.bib
+}
+
+
+for file in ~/Dokumente/Papers/*.pdf; do
+	filename=`basename $file .pdf`
+	echo ${PAPERDIR}/${filename}.txt
+	echo $file
+	pdftotext $file ${PAPERDIR}/${filename}.txt
+done
+#egrep -ho 'doi[.:].*$' ~/Dokumente/Papers/*.txt | sed 's/doi[.:](org\/)*//; /doi[:.]$/d' > ~/Dokumente/Papers/doi_index
+#egrep -ho 'doi[.:].*$' ~/Dokumente/Papers/*.txt | sed 's/doi[.:](org\/)*//' > ~/Dokumente/Papers/doi_index
+
+grep -ho 'doi[.:].*$' ${PAPERDIR}/*.txt | sed -E 's/doi[.:](org\/)*//; /^$/d; s/^[ ]*//' |\
+sort | uniq > "$PAPERDIR"doi_index
+
+
+while read line;
+	do doi2bib $line
+done < ~/Dokumente/Papers/doi_index
+
+sed -E '/(Resource|html)/d' ~/Dokumente/library_dirty.bib | cat -s > ~/Dokumente/library.bib
+
+rm ~/Dokumente/library_dirty.bib

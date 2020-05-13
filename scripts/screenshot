@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+import -window root ~/Bilder/screenshot.png

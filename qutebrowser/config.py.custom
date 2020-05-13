@@ -1,0 +1,25 @@
+c.url.start_pages =["https://www.zeit.de/"]
+c.url.searchengines = {
+    "DEFAULT": "https://duckduckgo.com/?q={}",
+    "yt": "https://www.youtube.com/results?search_query={}",
+    "aw": "https://wiki.archlinux.org/?search={}",
+    "tw": "https://twitter.com/{}",
+    "w": "https://en.wikipedia.org/?search={}",
+    "gs": "https://scholar.google.com/scholar?hl=de&as_sdt=0%2C5&q={}&btnG=",
+    "dict": "https://www.dict.cc/?s={}",
+    "rd": "https://reddit.com/r/{}"
+}
+
+
+c.aliases = {"q": "close",
+             "qa": "quit",
+             "w": "session-save",
+             "wq": "quit --save",
+             "wqa": "quit --save",
+             "handbook" : "open -t https://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/",
+             "odin" : "open -t https://www.theodinproject.com",
+             "ba" : "bookmark-add",
+             "bl" : "bookmark-load",
+             "fefe" : "open -t https://blog.fefe.de",
+}
+

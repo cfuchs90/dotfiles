@@ -1,0 +1,14 @@
+#!/bin/sh
+
+CURRENT_OUTPUT_DEVICE=`sysctl -n hw.snd.default_unit`
+
+choice=`echo $'Speakers\nHeadphones' | dmenu -i -p "Switch to Speakers or Headphones?"`
+
+echo $choice
+if [ $choice = "Speakers" ]; then
+    sysctl hw.snd.default_unit=1
+else
+    sysctl hw.snd.default_unit=3
+fi
+
+

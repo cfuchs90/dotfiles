@@ -1,0 +1,32 @@
+#!/bin/sh
+
+
+
+case "$1" in
+    lock)
+	i3lock -b -t -i /home/christian/Bilder/Wallpapers/Landscapes/1490049666110.png
+	;;
+    shutdown)
+	doshutdown=`echo $'Yes\nNo' | dmenu -i -p "Shutdown now?"` 
+	if [ $doshutdown = "Yes" ]; then
+	    shutdown -h now
+	else
+	    exit 0
+	fi
+	;;
+    reboot)
+	doreboot=`echo $'Yes\nNo' | dmenu -i -p "Reboot now?"`
+	if [ $doreboot = "Yes" ]; then
+	    reboot
+	else
+	    exit 0
+	fi
+	;;
+    *)
+	echo "Usage: $0 (lock,shutdown|reboot)"
+	exit 1
+	;;
+esac
+
+exit 0
+

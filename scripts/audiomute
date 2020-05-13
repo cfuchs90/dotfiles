@@ -1,0 +1,18 @@
+#!/bin/sh
+
+VOLUME_FILE='/home/christian/bin/currentvolume'
+CURRENT_OUTPUT_DEVICE=`sysctl hw.snd.default_unit`
+CURRENT_VOLUME=$(mixer vol | egrep -o '[0-9]+' | sed -n '1p')
+
+if [ $CURRENT_VOLUME -ne 0 ]
+then
+    echo "$CURRENT_VOLUME" > "$VOLUME_FILE"
+    mixer -f /dev/mixer$CURRENT_AUDIO_DEVICE vol 0
+else
+    LAST_VOLUME=$(cat $VOLUME_FILE)
+    mixer -f /dev/mixer$CURRENT_AUDIO_DEVICE vol "$LAST_VOLUME"
+    echo $LAST_VOLUME
+fi
+    
+
+

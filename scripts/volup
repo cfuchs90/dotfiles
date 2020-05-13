@@ -1,0 +1,4 @@
+#!/bin/sh
+
+CURRENT_AUDIO_DEVICE=`sysctl -n hw.snd.default_unit`
+mixer -f /dev/mixer$CURRENT_AUDIO_DEVICE vol +5

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+PREFIX_BOOK="/home/christian/Dokumente/Papers"
+choice=`ls /home/christian/Dokumente/Papers | dmenu -l 100`
+echo ${PREFIX_BOOK}/$choice
+zathura ${PREFIX_BOOK}/"$choice"

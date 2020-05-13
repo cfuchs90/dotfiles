@@ -1,0 +1,8 @@
+setxkbmap de
+xmodmap ~/.config/X/Xmodmap
+xrdb ~/.config/X/Xresources
+#exec i3
+exec awesome
+nitrogen --restore &
+wal -R
+
