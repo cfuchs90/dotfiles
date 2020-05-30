@@ -36,7 +36,7 @@
 !*.color15:      #eff1f5
 !
 urxvt*font: xft:dejavusansmono:size=11
-urxvt*transparent: true
+!urxvt*transparent: true
 urxvt*shading: 40
 urxvt*scrollBar: false
 URxvt*.perl-ext-common: default,matcher,clipboard,url-select,keyboard-select,font-size
