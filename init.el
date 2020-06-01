@@ -363,10 +363,6 @@
 ;; (global-set-key (kbd "C-x b") 'helm-mini)
 ;; (global-set-key (kbd "C-x w") 'window-swap-states)
 
-;;===== ERC - IRC Configs ======
-;; (add-hook 'erc-after-connect '(lambda (SERVER NICK)
-;; 				(erc-message "PRIVMSG" "NickServ identify ichwillin")))
-
 
 ;;==== KEYBINDINGS=====
 ;; (global-set-key (kbd "C-s") 'swiper-isearch)
