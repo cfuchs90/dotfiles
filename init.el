@@ -1,4 +1,5 @@
- ;; Add the org, melpa, melpa-stable and gnu servers to list of package mirrors
+
+;; Add the org, melpa, melpa-stable and gnu servers to list of package mirrors
 (require 'package)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -19,12 +20,12 @@
  (require 'use-package))
 
 ; atom-one-dark theme as main theme for emacs
-(use-package atom-one-dark-theme
-  :ensure t)
+;;(use-package atom-one-dark-theme
+  ;;:ensure t)
 
    ; org-beautify for a prettier org mode
-(use-package org-beautify-theme
-  :ensure t)
+;;(use-package org-beautify-theme
+  ;;:ensure t)
 
 ; the smart mode line
 (use-package smart-mode-line
@@ -33,12 +34,18 @@
 (use-package shell-pop
   :ensure t)
 
+
 ;; which key packe pops up a list of possible key combinations after pressing 
 ;; for example C-x
 (use-package which-key
   :ensure t
   :init
     (which-key-mode))
+
+(use-package base16-themes
+	     :ensure t)
+
+
 
 ;; helm package - extremely useful
 ;; (use-package helm
@@ -67,7 +74,7 @@
   :init
   (setq perspeen-use-tab t)
   :config
-  (perspeen-mode))
+  (perspeen-mode t))
 
 ;; watch images and print image-thumbnails in dired
 (use-package image-dired
@@ -85,6 +92,7 @@
   :ensure t)
 
 ;; makes it possible to use python regular expressions in emacs
+
 (use-package visual-regexp-steroids
   :ensure t
   :config
@@ -104,9 +112,9 @@
   :init
   (setq evil-disable-insert-state-bindings t)
   (setq evil-toggle-key "C-?")
-  (require 'evil))
-  ;; :config
-  ;; (evil-mode 1))
+  (require 'evil)
+  :config
+  (evil-mode 1))
 
 ;; vim-key bindings in org mode
 ;; (use-package evil-org
@@ -310,23 +318,23 @@
 (setq org-startup-with-inline-images t)
 
   (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "/home/christian/Dokumente/Persoenliches/privat.org.gpg" "Inbox")
+        '(("t" "Todo" entry (file+headline "/home/christian/Dokumente/Privat/privat.org.gpg" "Inbox")
           "* TODO %?\n  %i\n  %a")
           ("j" "Journal" entry (file+datetree "~/org/journal.org")
            "* %?\nEntered on %U\n  %i\n  %a")
-          ("a" "Scheduled TODO" entry (file+headline "~/Dokumente/Persoenliches/privat.org.gpg" "Inbox")
+          ("a" "Scheduled TODO" entry (file+headline "~/Dokumente/Privat/privat.org.gpg" "Inbox")
            "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
-          ("d" "Deadline" entry (file+headline  "~/Dokumente/Persoenliches/privat.org.gpg" "Inbox")
+          ("d" "Deadline" entry (file+headline  "~/Dokumente/Privat/privat.org.gpg" "Inbox")
            "* TODO %? %^G \n DEADLINE: %^t" :empty-lines 1)
-          ("s" "Shopping Item" entry (file+headline "~/Dokumente/Persoenliches/mylife.org.gpg" "Shopping")
+          ("s" "Shopping Item" entry (file+headline "~/Dokumente/Privat/mylife.org.gpg" "Inbox")
           "* TODO %? %^G \nSCHEDULED: %^t\n  %U" :empty-lines 1)
           ("p" "Project" entry (file "~/Dokumente/projects.org.gpg")
            "*  %? %i " :empty-lines 1)
           ("i" "Idea" entry (file "~/Dokumente/ideas.org")
            "*  %? %i %^G" :empty-lines 1)
-          ("c" "Schedule & Deadline" entry (file+headline  "~/Dokumente/Persoenliches/privat.org.gpg" "Inbox")
+          ("c" "Schedule & Deadline" entry (file+headline  "~/Dokumente/Privat/privat.org.gpg" "Inbox")
            "* TODO %? %^G \nSCHEDULED: %^t\n DEADLINE: %^t" :empty-lines 1)
-          ("b" "Bookmark" entry (file+headline "~/Dokumente/Persoenliches/privat.org.gpg" "Bookmarks")
+          ("b" "Bookmark" entry (file+headline "~/Dokumente/Privat/privat.org.gpg" "Inbox")
   	         "* %?\n:PROPERTIES:\n:CREATED: %U\n:END:\n\n" :empty-lines 1)
          ))
 
@@ -335,8 +343,8 @@
 
 (setq org-tag-alist '(("UNI" . ?u) ("Lesen" . ?l) ("Daily" . ?d) ("Haushalt" . ?h) ("Programmieren" . ?p) ("Schreiben" . ?w) ("PC Adminstration" . ?a) ("Buch" . ?b)))
 
-(setq org-directory "~/Dokumente/Persoenliches/")
-(setq org-agenda-files '("~/Dokumente/Persoenliches/privat.org.gpg"))
+(setq org-directory "~/Dokumente/Privat/")
+(setq org-agenda-files '("~/Dokumente/Privat/privat.org.gpg"))
 (setq org-agenda-span 2)
 
 (org-babel-do-load-languages
@@ -348,20 +356,22 @@
    (sql . t)
    (sqlite . t)))
 
-;; (global-set-key (kbd "C-#") 'push-mark-no-activate)
-;; (global-set-key (kbd "M-#") 'jump-to-mark)
-;; (global-set-key (kbd "C-x p") 'proced)
-;; (global-set-key (kbd "C-c c") 'org-capture)
-;; (global-set-key (kbd "C-x a") 'org-agenda)
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)
-;; (global-set-key "\C-x\C-m" 'execute-extended-command)
-;; (global-set-key "\C-c\C-m" 'execute-extended-command)
-;; (global-set-key (kbd "C-c r") 'vr/replace)
-;; (global-set-key (kbd "C-c q") 'vr/query-replace)
-;; (global-set-key (kbd "M-z") 'perspeen-tab-next)
-;; (global-set-key (kbd "M-Z") 'perspeen-tab-prev)
-;; (global-set-key (kbd "C-x b") 'helm-mini)
-;; (global-set-key (kbd "C-x w") 'window-swap-states)
+;;==== HYDRA MENUS =====
+(defhydra hydra-workspace (evil-normal-state-map "C-+")
+  "Perspeen"
+  ("c" perspeen-create-ws)
+  ("n" perspeen-next-ws)
+  ("p" perspeen-previous-ws)
+  ("d" perspeen-delete-ws)
+  ("r" perspeen-rename-ws))
+
+(defhydra hydra-tab (evil-normal-state-map "C-t")
+  "Perspeen"
+  ("c" perspeen-tab-create-tab)
+  ("n" perspeen-tab-next)
+  ("d" perspeen-tab-del)
+  ("p" perspeen-tab-prev))
+
 
 
 ;;==== KEYBINDINGS=====
@@ -369,6 +379,7 @@
 (global-set-key (kbd "M-s") 'swiper-isearch)
 ;; (global-set-key (kbd "M-s") 'shell-pop)
 (global-set-key (kbd "M-ü") 'er/expand-region)
+(global-set-key (kbd "C-ö") 'shell-pop)
 (global-set-key (kbd "C-a") 'back-to-indentation)
 (global-set-key (kbd "M-x") 'counsel-M-x)
 (global-set-key "\C-x\C-m" 'counsel-M-x)
@@ -383,8 +394,6 @@
 (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
-(global-set-key (kbd "C-t") 'perspeen-tab-next)
-(global-set-key (kbd "C-T") 'perspeen-tab-prev)
 (global-set-key (kbd "M-z") 'zap-up-to-char)
 (global-set-key (kbd "M-Z") 'zap-to-char)
 (global-set-key (kbd "C-c c") 'org-capture)
@@ -393,13 +402,17 @@
 
 (all-the-icons-ivy-setup)
 
+;; Evil bindings
+(define-key evil-normal-state-map (kbd "C-s") 'evil-search-forward)
+(define-key evil-normal-state-map (kbd "C-r") 'evil-search-backward)
 (evil-define-key nil normal-state-map
   "/" 'vr/isearch-forward
   "?" 'vr/isearch-backward)
 (evil-ex-define-cmd "ls" 'ivy-switch-buffer)
 
 ;;==== GENERAL SETUP=====
-(set-frame-font "Hack 12" nil t)
+;;(set-frame-font "Hack 10" nil t)
+(set-frame-font "DejaVuSansMono 11" nil t)
 
 
 (put 'narrow-to-region 'disabled nil)
@@ -422,6 +435,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(menu-bar-mode +1)
 
 (setq-default major-mode 'text-mode)
 (global-display-line-numbers-mode)
@@ -429,32 +443,9 @@
 (global-subword-mode 1)
 (show-paren-mode 1)
 (windmove-default-keybindings)
-(load-theme 'atom-one-dark t)
-(load-theme 'org-beautify t)
+;;(load-theme 'atom-one-dark t)
+(load-theme 'base16-atelier-estuary t)
+;;(load-theme 'org-beautify t)
+;;(set-background-color "black")
 ;;(sml/setup)
 (add-hook 'emacs-startup-hook 'eshell)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("669e02142a56f63861288cc585bee81643ded48a19e36bfdf02b66d745bcc626" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
- '(package-selected-packages
-   (quote
-    (lua-mode dot-mode shell-pop powerthesaurus ranger dired-ranger evil-leader helm-bibtex rainbow-mode all-the-icons-dired all-the-icons-ivy all-the-icons all-the-icons-ivy-rich ivy swiper counsel yasnippet-snippets which-key web-mode visual-regexp-steroids use-package synosaurus smart-mode-line sass-mode rainbow-delimiters projectile perspeen paredit org-super-agenda org-ref org-bullets org-beautify-theme magit julia-repl helm-css-scss flycheck expand-region evil-org evil-commentary ess emmet-mode elpy auctex atom-one-dark-theme ace-window academic-phrases)))
- '(shell-pop-shell-type (quote ("eshell" "*eshell*" (lambda nil (eshell)))))
- '(shell-pop-universal-key "C-ö")
- '(shell-pop-window-position "bottom")
- '(shell-pop-window-size 20)
- '(web-mode-enable-current-element-highlight t)
- '(web-mode-enable-element-content-fontification nil)
- '(web-mode-enable-html-entities-fontification t)
- '(web-mode-enable-sql-detection t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:foreground "#ABB2BF" :background "#282C34")))))
